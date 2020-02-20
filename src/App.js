@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
-import { firstBand, secondBand } from './components/bandValues'
+import { firstBand, secondBand, multiplier } from './components/bandValues'
 
 import Select from "react-select";
 
 export default function App() {
   const [firstBandOption, setFirstBandOption] = useState(null)
   const [secondBandOption, setSecondBandOption] = useState(null);
+  const [multiplierOption, setMultiplierOption] = useState(null)
 
   const handleFirstBand = firstBandOption => {
     setFirstBandOption(firstBandOption)
@@ -17,6 +18,11 @@ export default function App() {
     setSecondBandOption(secondBandOption);
     console.log('secondBand:', secondBandOption.value);
   };
+
+  const handleMultiplier = multiplierOption => {
+    setMultiplierOption(multiplierOption);
+    console.log('multiplier', multiplierOption.value)
+  }
 
   return (
     <div className="App">
@@ -41,6 +47,14 @@ export default function App() {
             options={secondBand}
             value={secondBandOption}
             onChange={handleSecondBand}
+            maxMenuHeight={500}
+          />
+          <p>Multiplier</p>
+          <Select
+            defaultValue={multiplier[0]}
+            options={multiplier}
+            value={multiplierOption}
+            onChange={handleMultiplier}
             maxMenuHeight={500}
           />
         </div>
