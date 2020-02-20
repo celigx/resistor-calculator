@@ -11,8 +11,21 @@ export const firstBand = [
   { value: "9", label: "White", color: "#999999" }
 ];
 
+export const secondBand = [
+  { value: "0", label: "Black", color: "#000000" },
+  { value: "1", label: "Brown", color: "#a1674a" },
+  { value: "2", label: "Red", color: "#FF5630" },
+  { value: "3", label: "Orange", color: "#FF8B00" },
+  { value: "4", label: "Yellow", color: "#FFC400" },
+  { value: "5", label: "Green", color: "#36B37E" },
+  { value: "6", label: "Blue", color: "#3185fc" },
+  { value: "7", label: "Violet", color: "#B64DFF" },
+  { value: "8", label: "Grey", color: "#666666" },
+  { value: "9", label: "White", color: "#999999" }
+];
+
 export const multiplier = [
-  { value: "1", label: "Black", color: "#000000", isFixed: true },
+  { value: "1", label: "Black", color: "#000000" },
   { value: "10", label: "Brown", color: "#a1674a" },
   { value: "100", label: "Red", color: "#FF5630" },
   { value: "1000", label: "Orange", color: "#FF8B00" },
