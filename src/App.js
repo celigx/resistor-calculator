@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
-import { firstBand, secondBand, multiplier } from './components/bandValues'
+import { firstBand, secondBand, multiplier, tolerance } from './components/bandValues'
 
 import Select from "react-select";
 
 export default function App() {
-  const [firstBandOption, setFirstBandOption] = useState(null)
+  const [firstBandOption, setFirstBandOption] = useState(null);
   const [secondBandOption, setSecondBandOption] = useState(null);
-  const [multiplierOption, setMultiplierOption] = useState(null)
+  const [multiplierOption, setMultiplierOption] = useState(null);
+  const [toleranceOption, setToleranceOption] = useState(null);
+
 
   const handleFirstBand = firstBandOption => {
     setFirstBandOption(firstBandOption)
@@ -22,6 +24,11 @@ export default function App() {
   const handleMultiplier = multiplierOption => {
     setMultiplierOption(multiplierOption);
     console.log('multiplier', multiplierOption.value)
+  }
+
+  const handleTolerance = toleranceOption => {
+    setToleranceOption(toleranceOption);
+    console.log('tolerance', toleranceOption.value)
   }
 
   return (
@@ -57,10 +64,17 @@ export default function App() {
             onChange={handleMultiplier}
             maxMenuHeight={500}
           />
+        <p>Tolerance</p>
+        <Select
+          defaultValue={tolerance[0]}
+          options={tolerance}
+          value={toleranceOption}
+          onChange={handleTolerance}
+          maxMenuHeight={500}
+        />
         </div>
         <div>
           <h4>Output</h4>
-          <p></p>
         </div>
       </div>
     </div>
