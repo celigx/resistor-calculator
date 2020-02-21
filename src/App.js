@@ -5,11 +5,11 @@ import { firstBand, secondBand, multiplier, tolerance } from './components/bandV
 import Select from "react-select";
 
 export default function App() {
-  const [firstBandOption, setFirstBandOption] = useState(null);
-  const [secondBandOption, setSecondBandOption] = useState(null);
-  const [multiplierOption, setMultiplierOption] = useState(null);
-  const [toleranceOption, setToleranceOption] = useState(null);
-
+  const [firstBandOption, setFirstBandOption] = useState(0);
+  const [secondBandOption, setSecondBandOption] = useState(0);
+  const [multiplierOption, setMultiplierOption] = useState(0);
+  const [toleranceOption, setToleranceOption] = useState(0);
+  const [showOutput, setShowOutput] = useState('');
 
   const handleFirstBand = firstBandOption => {
     setFirstBandOption(firstBandOption)
@@ -31,6 +31,18 @@ export default function App() {
     console.log('tolerance', toleranceOption.value)
   }
 
+  const handleCalculate = () => {
+    const firstBand = firstBandOption.value;
+    const secondBand = secondBandOption.value;
+    const concatBand = firstBand.concat(secondBand);
+    const multiplier = multiplierOption.value;
+    const tolerance = toleranceOption.value;
+    const resistance = concatBand * multiplier;
+
+    setShowOutput(`${resistance} Ohms ${tolerance}%`);
+    console.log('calculate', `Resistor: ${resistance} Ohms ${tolerance}%`)
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -42,39 +54,47 @@ export default function App() {
           <h4>Resistor Parameters</h4>
           <p>1st Band of Color</p>
           <Select
-            defaultValue={firstBand[0]}
+            placeholder={"Select a color"}
             options={firstBand}
             value={firstBandOption}
             onChange={handleFirstBand}
             maxMenuHeight={500}
+            blurInputOnSelect={true}
           />
           <p>2nd Band of Color</p>
           <Select
-            defaultValue={secondBand[0]}
+            placeholder={"Select a color"}
             options={secondBand}
             value={secondBandOption}
             onChange={handleSecondBand}
             maxMenuHeight={500}
+            blurInputOnSelect={true}
           />
           <p>Multiplier</p>
           <Select
-            defaultValue={multiplier[0]}
+            placeholder={"Select a color"}
             options={multiplier}
             value={multiplierOption}
             onChange={handleMultiplier}
             maxMenuHeight={500}
+            blurInputOnSelect={true}
           />
-        <p>Tolerance</p>
-        <Select
-          defaultValue={tolerance[0]}
-          options={tolerance}
-          value={toleranceOption}
-          onChange={handleTolerance}
-          maxMenuHeight={500}
-        />
+          <p>Tolerance</p>
+          <Select
+            placeholder={"Select a color"}
+            options={tolerance}
+            value={toleranceOption}
+            onChange={handleTolerance}
+            maxMenuHeight={500}
+            blurInputOnSelect={true}
+          />
+          <button className="Button-calc" onClick={handleCalculate}>
+            Calculate
+          </button>
         </div>
         <div>
           <h4>Output</h4>
+          <p className="Output-paragraph">Resistor: {showOutput}</p>
         </div>
       </div>
     </div>
