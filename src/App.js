@@ -64,7 +64,7 @@ export default function App() {
       </header>
 
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <div style={{}}>
+        <div style={{ minWidth: '250px' }}>
           <h4>Resistor Parameters</h4>
           <p>1st Band of Color</p>
           <Select
@@ -102,9 +102,6 @@ export default function App() {
             maxMenuHeight={500}
             blurInputOnSelect={true}
           />
-          <button className="Button-calc" onClick={handleCalculate}>
-            Calculate
-          </button>
         </div>
         <div>
           <h4>Output</h4>
