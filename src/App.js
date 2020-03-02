@@ -1,33 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { firstBand, secondBand, multiplier, tolerance } from './components/bandValues'
-
 import Select from "react-select";
 
+
 export default function App() {
-  const [firstBandOption, setFirstBandOption] = useState(0);
-  const [secondBandOption, setSecondBandOption] = useState(0);
-  const [multiplierOption, setMultiplierOption] = useState(0);
-  const [toleranceOption, setToleranceOption] = useState(0);
-  const [showOutput, setShowOutput] = useState('');
+  const [firstBandOption, setFirstBandOption] = useState(null);
+  const [secondBandOption, setSecondBandOption] = useState(null);
+  const [multiplierOption, setMultiplierOption] = useState(null);
+  const [toleranceOption, setToleranceOption] = useState(null);
+  const [output, setOutput] = useState(null);
+  const [array, setArray] = useState([false, false, false, false]);
+
+  const isTrue = (currentValue) => currentValue === true;
+
+  useEffect(() => {
+    array.every(isTrue)
+      ? handleCalculate()
+      : console.log('Not true')
+  })
 
   const handleFirstBand = firstBandOption => {
     setFirstBandOption(firstBandOption)
+    array[0] = true
     console.log('firstBand:', firstBandOption.value)
+    console.log("selected:", firstBandOption.selected);
   }
 
   const handleSecondBand = secondBandOption => {
     setSecondBandOption(secondBandOption);
+    array[1] = true;
     console.log('secondBand:', secondBandOption.value);
   };
 
   const handleMultiplier = multiplierOption => {
     setMultiplierOption(multiplierOption);
+    array[2] = true;
     console.log('multiplier', multiplierOption.value)
   }
 
   const handleTolerance = toleranceOption => {
     setToleranceOption(toleranceOption);
+    array[3] = true;
     console.log('tolerance', toleranceOption.value)
   }
 
@@ -39,7 +53,7 @@ export default function App() {
     const tolerance = toleranceOption.value;
     const resistance = concatBand * multiplier;
 
-    setShowOutput(`${resistance} Ohms ${tolerance}%`);
+    setOutput(`${resistance} Ohms ${tolerance}%`);
     console.log('calculate', `Resistor: ${resistance} Ohms ${tolerance}%`)
   }
   
@@ -94,7 +108,9 @@ export default function App() {
         </div>
         <div>
           <h4>Output</h4>
-          <p className="Output-paragraph">Resistor: {showOutput}</p>
+          <p className="Output-paragraph">
+            {array.every(isTrue) ? `Resistor: ${output}` : `Resistor:--`}
+          </p>
         </div>
       </div>
     </div>
