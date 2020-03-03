@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { firstBand, secondBand, multiplier, tolerance } from './components/bandValues'
+import { firstBand, secondBand, multiplier, tolerance } from './components/bandValues';
 import Select from "react-select";
+import Resistor from './components/Resistor';
 
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
   const [multiplierOption, setMultiplierOption] = useState(null);
   const [toleranceOption, setToleranceOption] = useState(null);
   const [output, setOutput] = useState(null);
+  // eslint-disable-next-line
   const [array, setArray] = useState([false, false, false, false]);
 
   const isTrue = (currentValue) => currentValue === true;
@@ -64,7 +66,7 @@ export default function App() {
       </header>
 
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <div style={{ minWidth: '250px' }}>
+        <div style={{ minWidth: "250px" }}>
           <h4>Resistor Parameters</h4>
           <p>1st Band of Color</p>
           <Select
@@ -105,6 +107,17 @@ export default function App() {
         </div>
         <div>
           <h4>Output</h4>
+          {/* <img src={resistor} className="Resistor-svg" alt="resistor" /> */}
+          <Resistor
+            firstColor={firstBandOption && firstBandOption.color}
+            secondColor={secondBandOption && secondBandOption.color}
+            multiplierColor={multiplierOption && multiplierOption.color}
+            toleranceColor={toleranceOption && toleranceOption.color}
+            firstValue={firstBandOption && firstBandOption.value}
+            secondValue={secondBandOption && secondBandOption.value}
+            multiplierValue={multiplierOption && multiplierOption.value}
+            toleranceValue={toleranceOption && toleranceOption.value}
+          />
           <p className="Output-paragraph">
             {array.every(isTrue) ? `Resistor: ${output}` : `Resistor:--`}
           </p>
