@@ -47,13 +47,21 @@ export default function App() {
     console.log('tolerance', toleranceOption.value)
   }
 
+  const numFormat = (num) => {
+    // return num > 999 ? (num/1000) + 'k' : num
+    return num > 999999999 ? (num / 1000000000) + 'G'
+    : num > 999999 ? num / 1000000 + 'M'
+    : num > 999 ? num / 1000 + "k"
+    : num
+  }
+
   const handleCalculate = () => {
     const firstBand = firstBandOption.value;
     const secondBand = secondBandOption.value;
     const concatBand = firstBand.concat(secondBand);
     const multiplier = multiplierOption.value;
     const tolerance = toleranceOption.value;
-    const resistance = concatBand * multiplier;
+    const resistance = numFormat(concatBand * multiplier);
 
     setOutput(`${resistance} Ohms ${tolerance}%`);
     console.log('calculate', `Resistor: ${resistance} Ohms ${tolerance}%`)
@@ -115,7 +123,7 @@ export default function App() {
             toleranceColor={toleranceOption && toleranceOption.color}
             firstValue={firstBandOption && firstBandOption.value}
             secondValue={secondBandOption && secondBandOption.value}
-            multiplierValue={multiplierOption && multiplierOption.value}
+            multiplierValue={multiplierOption && numFormat(multiplierOption.value)}
             toleranceValue={toleranceOption && toleranceOption.value}
           />
           <p className="Output-paragraph">
