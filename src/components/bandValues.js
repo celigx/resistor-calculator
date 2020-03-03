@@ -13,7 +13,7 @@ export const firstBand = [
 
 export const secondBand = [
   { value: "0", label: "Black", color: "#000000" },
-  { value: "1", label: "Brown", color: "Aa1674A" },
+  { value: "1", label: "Brown", color: "#A1674A" },
   { value: "2", label: "Red", color: "#FF5630" },
   { value: "3", label: "Orange", color: "#FF8B00" },
   { value: "4", label: "Yellow", color: "#FFC400" },
