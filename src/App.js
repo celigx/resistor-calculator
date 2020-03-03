@@ -48,10 +48,9 @@ export default function App() {
   }
 
   const numFormat = (num) => {
-    // return num > 999 ? (num/1000) + 'k' : num
-    return num > 999999999 ? (num / 1000000000) + 'G'
-    : num > 999999 ? num / 1000000 + 'M'
-    : num > 999 ? num / 1000 + "k"
+    return num > 999999999 ? `${num / 1000000000}G`
+    : num > 999999 ? `${num / 1000000}M`
+    : num > 999 ? `${num / 1000}k`
     : num
   }
 
