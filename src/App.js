@@ -83,6 +83,7 @@ export default function App() {
             onChange={handleFirstBand}
             maxMenuHeight={500}
             blurInputOnSelect={true}
+            isSearchable={false}
           />
           <p>2nd Band of Color</p>
           <Select
@@ -92,6 +93,7 @@ export default function App() {
             onChange={handleSecondBand}
             maxMenuHeight={500}
             blurInputOnSelect={true}
+            isSearchable={false}
           />
           <p>Multiplier</p>
           <Select
@@ -101,6 +103,7 @@ export default function App() {
             onChange={handleMultiplier}
             maxMenuHeight={500}
             blurInputOnSelect={true}
+            isSearchable={false}
           />
           <p>Tolerance</p>
           <Select
@@ -110,6 +113,7 @@ export default function App() {
             onChange={handleTolerance}
             maxMenuHeight={500}
             blurInputOnSelect={true}
+            isSearchable={false}
           />
         </div>
         <div className="Resistor-output">
@@ -122,7 +126,9 @@ export default function App() {
             toleranceColor={toleranceOption && toleranceOption.color}
             firstValue={firstBandOption && firstBandOption.value}
             secondValue={secondBandOption && secondBandOption.value}
-            multiplierValue={multiplierOption && numFormat(multiplierOption.value)}
+            multiplierValue={
+              multiplierOption && numFormat(multiplierOption.value)
+            }
             toleranceValue={toleranceOption && toleranceOption.value}
           />
           <p className="Output-paragraph">
