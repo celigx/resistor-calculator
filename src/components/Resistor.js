@@ -25,7 +25,7 @@ export default function Resistor({ firstColor, secondColor, multiplierColor, tol
       </g>
       <rect id="First Band" x="86" y="2" width="20" height="100" fill={firstColor}/>
       <rect id="Second Band" x="147" y="17" width="20" height="70" fill={secondColor}/>
-      <rect id="Multiplier Band" x="223" y="17" width="20" height="70" fill={multiplierColor}/>
+      <rect id="Multiplier Band" x="227" y="17" width="20" height="70" fill={multiplierColor}/>
       <rect id="Tolerance Band" x="336" y="2" width="20" height="100" fill={toleranceColor}/>
       <g id="First Square">
       <rect id="Rectangle 57" x="86" y="102" width="20" height="50" fill={firstColor} fill-opacity="0.4"/>
@@ -38,13 +38,13 @@ export default function Resistor({ firstColor, secondColor, multiplierColor, tol
       <text id="0" x="157" y="167" width="30" height="30" dominant-baseline="central" text-anchor="middle" fill="#fff">{secondValue}</text>
       </g>
       <g id="Third Square">
-      <rect id="Rectangle 59" x="223" y="87" width="20" height="65" fill={multiplierColor} fill-opacity="0.4"/>
-      <rect id="Rectangle 66" x="203" y="152" width="60" height="30" fill={multiplierColor}/>
-      <text id="0" x="233" y="167" width="60" height="30" dominant-baseline="central" text-anchor="middle" fill="#fff">{multiplierValue}</text>
+      <rect id="Rectangle 59" x="227" y="87" width="20" height="65" fill={multiplierColor} fill-opacity="0.4"/>
+      <rect id="Rectangle 66" x="197" y="152" width="80" height="30" fill={multiplierColor}/>
+      <text id="0" x="237" y="167" width="60" height="30" dominant-baseline="central" text-anchor="middle" fill="#fff">{multiplierValue}</text>
       </g>
       <g id="Fourth Square">
       <rect id="Rectangle 60" x="336" y="102" width="20" height="50" fill={toleranceColor} fill-opacity="0.4"/>
-      <rect id="Rectangle 67" x="316" y="152" width="60" height="30" fill={toleranceColor}/>
+      <rect id="Rectangle 67" x="306" y="152" width="80" height="30" fill={toleranceColor}/>
       <text id="0" x="346" y="167" width="60" height="30" dominant-baseline="central" text-anchor="middle" fill="#fff">{toleranceValue}</text>
       </g>
       </g>
