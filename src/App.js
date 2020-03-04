@@ -72,8 +72,8 @@ export default function App() {
         <h3>Resistor Calculator</h3>
       </header>
 
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <div style={{ minWidth: "250px" }}>
+      <div className="App-container">
+        <div className="Resistor-parameters">
           <h4>Resistor Parameters</h4>
           <p>1st Band of Color</p>
           <Select
@@ -112,7 +112,7 @@ export default function App() {
             blurInputOnSelect={true}
           />
         </div>
-        <div>
+        <div className="Resistor-output">
           <h4>Output</h4>
           {/* <img src={resistor} className="Resistor-svg" alt="resistor" /> */}
           <Resistor

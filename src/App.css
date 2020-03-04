@@ -12,6 +12,15 @@
   color: #000;
 }
 
+.App-container {
+  display: flex; 
+  justify-content: space-around;
+}
+
+.Resistor-parameters {
+  min-width: 500px;
+}
+
 .Button-calc {
   background: #32383E;
   color: #fff;
@@ -34,4 +43,25 @@
 
 .Resistor-svg {
   max-width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .App-container {
+    flex-direction: column;
+    margin: 0 40px;
+  }
+  .Resistor-parameters {
+    min-width: 100%;
+    margin: 0 0 20px 0;
+  }
+  .Resistor-output {
+    display: contents;
+  }
+  .Output-paragraph {
+    min-width: 100%;
+  }
+  svg {
+    align-self: center;
+    width: 100%;
+  }
 }
