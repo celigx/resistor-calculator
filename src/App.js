@@ -118,7 +118,6 @@ export default function App() {
         </div>
         <div className="Resistor-output">
           <h4>Output</h4>
-          {/* <img src={resistor} className="Resistor-svg" alt="resistor" /> */}
           <Resistor
             firstColor={firstBandOption && firstBandOption.color}
             secondColor={secondBandOption && secondBandOption.color}
