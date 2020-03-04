@@ -1,7 +1,3 @@
-.App {
-
-}
-
 .App-header {
   /* background-color: #282c34; */
   display: flex;
@@ -15,10 +11,21 @@
 .App-container {
   display: flex; 
   justify-content: space-around;
+  /* margin: 0 100px; */
 }
 
 .Resistor-parameters {
-  min-width: 500px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 50px;
+}
+
+.Resistor-output {
+  margin: 0 50px;
+}
+
+svg {
+  min-width: 100%;
 }
 
 .Button-calc {
