@@ -17,9 +17,9 @@ export default function App() {
   const isTrue = (currentValue) => currentValue === true;
 
   useEffect(() => {
-    array.every(isTrue)
-      ? handleCalculate()
-      : console.log('Not true')
+    if (array.every(isTrue)) {
+      handleCalculate()
+    }
   })
 
   const handleFirstBand = firstBandOption => {
@@ -125,9 +125,7 @@ export default function App() {
             toleranceColor={toleranceOption && toleranceOption.color}
             firstValue={firstBandOption && firstBandOption.value}
             secondValue={secondBandOption && secondBandOption.value}
-            multiplierValue={
-              multiplierOption && numFormat(multiplierOption.value)
-            }
+            multiplierValue={multiplierOption && numFormat(multiplierOption.value)}
             toleranceValue={toleranceOption && toleranceOption.value}
           />
           <p className="Output-paragraph">
