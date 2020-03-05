@@ -11,6 +11,18 @@ export default function Resistor({ firstColor, secondColor, multiplierColor, tol
   multiplierValue = multiplierValue === null ? `-` : `x${multiplierValue}Ω`
   toleranceValue = toleranceValue === null ? `-` : `±${toleranceValue}%`;
 
+  const textColor = {
+    firstColor: firstColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
+    secondColor: secondColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
+    multiplierColor: multiplierColor === '#FFFFFF' ? '#000000' : '#FFFFFF'
+  }
+
+  const strokeColor = {
+    firstColor: firstColor === "#FFFFFF" ? "#CCCCCC" : null,
+    secondColor: secondColor === "#FFFFFF" ? "#CCCCCC" : null,
+    multiplierColor: multiplierColor === "#FFFFFF" ? "#CCCCCC" : null
+  };
+  
 
   return (
     <svg width="442" height="182" viewBox="0 0 442 182" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,19 +40,19 @@ export default function Resistor({ firstColor, secondColor, multiplierColor, tol
       <rect id="Multiplier Band" x="227" y="17" width="20" height="70" fill={multiplierColor}/>
       <rect id="Tolerance Band" x="336" y="2" width="20" height="100" fill={toleranceColor}/>
       <g id="First Square">
-      <rect id="Rectangle 57" x="86" y="102" width="20" height="50" fill={firstColor} fillOpacity="0.4"/>
-      <rect id="Rectangle 64" x="81" y="152" width="30" height="30" fill={firstColor}/>
-      <text id="1" x="96" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill="#fff">{firstValue}</text>
+      <rect id="Rectangle 57" x="86" y="102" width="20" height="50" stroke={strokeColor.firstColor} fill={firstColor} fillOpacity="0.4"/>
+      <rect id="Rectangle 64" x="81" y="152" width="30" height="30" stroke={strokeColor.firstColor} fill={firstColor}/>
+      <text id="1" x="96" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.firstColor}>{firstValue}</text>
       </g>
       <g id="Second Square">
-      <rect id="Rectangle 58" x="147" y="87" width="20" height="65" fill={secondColor} fillOpacity="0.4"/>
-      <rect id="Rectangle 65" x="142" y="152" width="30" height="30" fill={secondColor}/>
-      <text id="0" x="157" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill="#fff">{secondValue}</text>
+      <rect id="Rectangle 58" x="147" y="87" width="20" height="65" stroke={strokeColor.secondColor} fill={secondColor} fillOpacity="0.4"/>
+      <rect id="Rectangle 65" x="142" y="152" width="30" height="30" stroke={strokeColor.secondColor} fill={secondColor}/>
+      <text id="0" x="157" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.secondColor}>{secondValue}</text>
       </g>
       <g id="Third Square">
-      <rect id="Rectangle 59" x="227" y="87" width="20" height="65" fill={multiplierColor} fillOpacity="0.4"/>
-      <rect id="Rectangle 66" x="197" y="152" width="80" height="30" fill={multiplierColor}/>
-      <text id="0" x="237" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill="#fff">{multiplierValue}</text>
+      <rect id="Rectangle 59" x="227" y="87" width="20" height="65" stroke={strokeColor.multiplierColor} fill={multiplierColor} fillOpacity="0.4"/>
+      <rect id="Rectangle 66" x="197" y="152" width="80" height="30" stroke={strokeColor.multiplierColor} fill={multiplierColor}/>
+      <text id="0" x="237" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.multiplierColor}>{multiplierValue}</text>
       </g>
       <g id="Fourth Square">
       <rect id="Rectangle 60" x="336" y="102" width="20" height="50" fill={toleranceColor} fillOpacity="0.4"/>
