@@ -8,7 +8,7 @@ export const firstBand = [
   { value: "6", label: "Blue", color: "#3185FC" },
   { value: "7", label: "Violet", color: "#6767CA" },
   { value: "8", label: "Grey", color: "#666666" },
-  { value: "9", label: "White", color: "#999999" }
+  { value: "9", label: "White", color: "#FFFFFF" }
 ];
 
 export const secondBand = [
@@ -21,7 +21,7 @@ export const secondBand = [
   { value: "6", label: "Blue", color: "#3185FC" },
   { value: "7", label: "Violet", color: "#6767CA" },
   { value: "8", label: "Grey", color: "#666666" },
-  { value: "9", label: "White", color: "#999999" }
+  { value: "9", label: "White", color: "#FFFFFF" }
 ];
 
 export const multiplier = [
@@ -34,7 +34,7 @@ export const multiplier = [
   { value: "1000000", label: "Blue", color: "#3185FC" },
   { value: "10000000", label: "Violet", color: "#6767CA" },
   { value: "100000000", label: "Grey", color: "#666666" },
-  { value: "1000000000", label: "White", color: "#999999" },
+  { value: "1000000000", label: "White", color: "#FFFFFF" },
   { value: "0.1", label: "Gold", color: "#D3AF37" },
   { value: "0.01", label: "Silver", color: "#CCCCCC" }
 ];
