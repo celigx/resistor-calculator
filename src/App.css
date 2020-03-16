@@ -55,7 +55,7 @@ svg {
 @media only screen and (max-width: 768px) {
   .App-container {
     flex-direction: column;
-    margin: 0 40px;
+    margin: 0 5%;
   }
   .Resistor-parameters {
     min-width: 100%;
@@ -70,5 +70,11 @@ svg {
   svg {
     align-self: center;
     width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .App-container {
+    margin: 0 15%;
   }
 }
