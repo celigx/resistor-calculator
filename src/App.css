@@ -8,6 +8,10 @@
   color: #000;
 }
 
+.Radio-buttons {
+  margin: 0 5%;
+}
+
 .App-container {
   display: flex; 
   justify-content: space-around;
