@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './App.sass';
 import { firstBand, secondBand, thirdBand, multiplier, tolerance, ppm } from './components/bandValues';
 import Select from "react-select";
 import Resistor from './components/Resistor';
@@ -23,8 +23,6 @@ export default function FourBand() {
       handleCalculate()
     }
   })
-  console.log('array:', array)
-  console.log('third:', thirdBandOption === null ? console.log('false') : thirdBandOption.value)
 
   const handleFirstBand = firstBandOption => {
     setFirstBandOption(firstBandOption);
@@ -136,115 +134,116 @@ export default function FourBand() {
       <header className="App-header">
         <h3>Resistor Calculator</h3>
       </header>
-
-      <div className="Radio-buttons">
-        <input type="radio" value="4" checked={selectedOption === "4"} onChange={handleOptionChange} /> 4 Band
-        <input type="radio" value="5" checked={selectedOption === "5"} onChange={handleOptionChange} /> 5 Band
-        <input type="radio" value="6" checked={selectedOption === "6"} onChange={handleOptionChange} /> 6 Band
-      </div>
-
-      <div className="App-container">
-        <div className="Resistor-parameters">
-          <h4>Resistor Parameters</h4>
-          <p>1st Band of Color</p>
-          <Select
-            placeholder={"Select a color"}
-            options={firstBand}
-            value={firstBandOption}
-            onChange={handleFirstBand}
-            maxMenuHeight={500}
-            blurInputOnSelect={true}
-            isSearchable={false}
-          />
-          <p>2nd Band of Color</p>
-          <Select
-            placeholder={"Select a color"}
-            options={secondBand}
-            value={secondBandOption}
-            onChange={handleSecondBand}
-            maxMenuHeight={500}
-            blurInputOnSelect={true}
-            isSearchable={false}
-          />
-          {selectedOption === "5" || selectedOption === "6" ?
-          (
-            <div className="Third-band">
-              <p>3rd Band of Color</p>
-              <Select
-                placeholder={"Select a color"}
-                options={thirdBand}
-                value={thirdBandOption}
-                onChange={handleThirdBand}
-                maxMenuHeight={500}
-                blurInputOnSelect={true}
-                isSearchable={false}
-                />
+        <div className="Resistor-container">
+          <div className="Resistor-parameters">
+            <h4>Resistor Parameters</h4>
+            <div className="Radio-buttons">
+              <input type="radio" value="4" id="4" checked={selectedOption === "4"} onChange={handleOptionChange} />
+              <label htmlFor="4">4 Band</label>
+              <input type="radio" value="5" id="5" checked={selectedOption === "5"} onChange={handleOptionChange} />
+              <label htmlFor="5">5 Band</label>
+              <input type="radio" value="6" id="6" checked={selectedOption === "6"} onChange={handleOptionChange} />
+              <label htmlFor="6">6 Band</label>
             </div>
-          ) : (
-            null
-          )
-          }
-          <p>Multiplier</p>
-          <Select
-            placeholder={"Select a color"}
-            options={multiplier}
-            value={multiplierOption}
-            onChange={handleMultiplier}
-            maxMenuHeight={500}
-            blurInputOnSelect={true}
-            isSearchable={false}
-          />
-          <p>Tolerance</p>
-          <Select
-            placeholder={"Select a color"}
-            options={tolerance}
-            value={toleranceOption}
-            onChange={handleTolerance}
-            maxMenuHeight={500}
-            blurInputOnSelect={true}
-            isSearchable={false}
-          />
-          {selectedOption === "6" ?
-          (
-            <div className="Ppm-band">
-              <p>PPM</p>
-              <Select
-                placeholder={"Select a color"}
-                options={ppm}
-                value={ppmOption}
-                onChange={handlePPM}
-                maxMenuHeight={500}
-                blurInputOnSelect={true}
-                isSearchable={false}
-                />
-            </div>
-          ) : (
-            null
-          )
-          }
+            <p>1st Band of Color</p>
+            <Select
+              placeholder={"Select a color"}
+              options={firstBand}
+              value={firstBandOption}
+              onChange={handleFirstBand}
+              maxMenuHeight={500}
+              blurInputOnSelect={true}
+              isSearchable={false}
+            />
+            <p>2nd Band of Color</p>
+            <Select
+              placeholder={"Select a color"}
+              options={secondBand}
+              value={secondBandOption}
+              onChange={handleSecondBand}
+              maxMenuHeight={500}
+              blurInputOnSelect={true}
+              isSearchable={false}
+            />
+            {selectedOption === "5" || selectedOption === "6" ?
+            (
+              <div className="Third-band">
+                <p>3rd Band of Color</p>
+                <Select
+                  placeholder={"Select a color"}
+                  options={thirdBand}
+                  value={thirdBandOption}
+                  onChange={handleThirdBand}
+                  maxMenuHeight={500}
+                  blurInputOnSelect={true}
+                  isSearchable={false}
+                  />
+              </div>
+            ) : (
+              null
+            )
+            }
+            <p>Multiplier</p>
+            <Select
+              placeholder={"Select a color"}
+              options={multiplier}
+              value={multiplierOption}
+              onChange={handleMultiplier}
+              maxMenuHeight={500}
+              blurInputOnSelect={true}
+              isSearchable={false}
+            />
+            <p>Tolerance</p>
+            <Select
+              placeholder={"Select a color"}
+              options={tolerance}
+              value={toleranceOption}
+              onChange={handleTolerance}
+              maxMenuHeight={500}
+              blurInputOnSelect={true}
+              isSearchable={false}
+            />
+            {selectedOption === "6" ?
+            (
+              <div className="Ppm-band">
+                <p>PPM</p>
+                <Select
+                  placeholder={"Select a color"}
+                  options={ppm}
+                  value={ppmOption}
+                  onChange={handlePPM}
+                  maxMenuHeight={500}
+                  blurInputOnSelect={true}
+                  isSearchable={false}
+                  />
+              </div>
+            ) : (
+              null
+            )
+            }
+          </div>
+          <div className="Resistor-output">
+            <h4>Output</h4>
+            <Resistor
+              firstColor={firstBandOption && firstBandOption.color}
+              secondColor={secondBandOption && secondBandOption.color}
+              thirdColor={thirdBandOption && thirdBandOption.color}
+              multiplierColor={multiplierOption && multiplierOption.color}
+              toleranceColor={toleranceOption && toleranceOption.color}
+              ppmColor={ppmOption && ppmOption.color}
+              firstValue={firstBandOption && firstBandOption.value}
+              secondValue={secondBandOption && secondBandOption.value}
+              thirdValue={thirdBandOption && thirdBandOption.value}
+              multiplierValue={multiplierOption && numFormat(multiplierOption.value)}
+              toleranceValue={toleranceOption && toleranceOption.value}
+              ppmValue={ppmOption && ppmOption.value}
+              selectedOption={selectedOption}
+            />
+            <p className="Output-paragraph">
+              {array.every(isTrue) ? `Resistor: ${output}` : `Resistor: --`}
+            </p>
+          </div>
         </div>
-        <div className="Resistor-output">
-          <h4>Output</h4>
-          <Resistor
-            firstColor={firstBandOption && firstBandOption.color}
-            secondColor={secondBandOption && secondBandOption.color}
-            thirdColor={thirdBandOption && thirdBandOption.color}
-            multiplierColor={multiplierOption && multiplierOption.color}
-            toleranceColor={toleranceOption && toleranceOption.color}
-            ppmColor={ppmOption && ppmOption.color}
-            firstValue={firstBandOption && firstBandOption.value}
-            secondValue={secondBandOption && secondBandOption.value}
-            thirdValue={thirdBandOption && thirdBandOption.value}
-            multiplierValue={multiplierOption && numFormat(multiplierOption.value)}
-            toleranceValue={toleranceOption && toleranceOption.value}
-            ppmValue={ppmOption && ppmOption.value}
-            selectedOption={selectedOption}
-          />
-          <p className="Output-paragraph">
-            {array.every(isTrue) ? `Resistor: ${output}` : `Resistor:--`}
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
