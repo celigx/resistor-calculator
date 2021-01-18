@@ -9,7 +9,6 @@ export default function Resistor({ firstColor, secondColor, thirdColor, multipli
   toleranceColor = toleranceColor === null ? "#A1A1A1" : toleranceColor
   ppmColor = ppmColor === null ? "#A1A1A1" : ppmColor
 
-
   firstValue = firstValue === null ? `-` : firstValue
   secondValue = secondValue === null ? `-` : secondValue
   thirdValue = thirdValue === null ? `-` : thirdValue
@@ -17,21 +16,20 @@ export default function Resistor({ firstColor, secondColor, thirdColor, multipli
   toleranceValue = toleranceValue === null ? `-` : `±${toleranceValue}%`
   ppmValue = ppmValue === null ? `-` : `${ppmValue}ppm`
 
-  const textColor = {
-    firstColor: firstColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
-    secondColor: secondColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
-    thirdColor: thirdColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
-    multiplierColor: multiplierColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
-    toleranceColor: toleranceColor === '#FFFFFF' ? '#000000' : '#FFFFFF'
+  // Change text color based on background color
+  const textColor = (hexcolor) => {
+    hexcolor = hexcolor.replace("#", "");
+    const r = parseInt(hexcolor.substr(0,2),16);
+    const g = parseInt(hexcolor.substr(2,2),16);
+    const b = parseInt(hexcolor.substr(4,2),16);
+    const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    return (yiq >= 128) ? '#000000' : '#FFFFFF';
   }
 
-  const strokeColor = {
-    firstColor: firstColor === "#FFFFFF" ? "#CCCCCC" : null,
-    secondColor: secondColor === "#FFFFFF" ? "#CCCCCC" : null,
-    thirdColor: thirdColor === "#FFFFFF" ? "#CCCCCC" : null,
-    multiplierColor: multiplierColor === "#FFFFFF" ? "#CCCCCC" : null,
-    toleranceColor: toleranceColor === '#FFFFFF' ? '#CCCCCC' : null
-  };
+  // Add stroke if the color is white
+  const strokeColor = (hexcolor) => {
+    return hexcolor === '#FFFFFF' ? '#CCCCCC' : null
+  }
   
   return (
     <svg width="544" height="182" viewBox="0 0 544 182" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,25 +42,25 @@ export default function Resistor({ firstColor, secondColor, thirdColor, multipli
       
       <g id="group-1" className="Band-one">
       <rect x="86.1521" y="2" width="20" height="100" fill={firstColor}/>
-      <rect x="86.1521" y="102" width="20" height="50" stroke={strokeColor.firstColor} fill={firstColor} fillRule="0.4"/>
-      <rect x="81.1521" y="152" width="30" height="30" stroke={strokeColor.firstColor} fill={firstColor}/>
-      <text x="96" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.firstColor}>{firstValue}</text>
+      <rect x="86.1521" y="102" width="20" height="50" stroke={strokeColor(firstColor)} fill={firstColor} fillRule="0.4"/>
+      <rect x="81.1521" y="152" width="30" height="30" stroke={strokeColor(firstColor)} fill={firstColor}/>
+      <text x="96" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(firstColor)}>{firstValue}</text>
       </g>
       
       <g id="group-2" className="Band-two">
       <rect x="145.965" y="17" width="20" height="70" fill={secondColor}/>
-      <rect x="145.965" y="87" width="20" height="65" stroke={strokeColor.secondColor} fill={secondColor} fillRule="0.4"/>
-      <rect x="140.965" y="152" width="30" height="30" stroke={strokeColor.secondColor} fill={secondColor}/>
-      <text id="0" x="156" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.secondColor}>{secondValue}</text>
+      <rect x="145.965" y="87" width="20" height="65" stroke={strokeColor(secondColor)} fill={secondColor} fillRule="0.4"/>
+      <rect x="140.965" y="152" width="30" height="30" stroke={strokeColor(secondColor)} fill={secondColor}/>
+      <text id="0" x="156" y="167" width="30" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(secondColor)}>{secondValue}</text>
       </g>
       
       {selectedOption === "5" ? 
         (  
           <g id="group-3" className="Band-three">
             <rect x="181.423" y="17" width="20" height="70" fill={thirdColor}/>
-            <rect x="181.423" y="87" width="20" height="65" stroke={strokeColor.thirdColor} fill={thirdColor} fillRule="0.4"/>
-            <rect x="176.423" y="152" width="30" height="30" stroke={strokeColor.thirdColor} fill={thirdColor}/>
-            <text id="0" x="191" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.thirdColor}>{thirdValue}</text>
+            <rect x="181.423" y="87" width="20" height="65" stroke={strokeColor(thirdColor)} fill={thirdColor} fillRule="0.4"/>
+            <rect x="176.423" y="152" width="30" height="30" stroke={strokeColor(thirdColor)} fill={thirdColor}/>
+            <text id="0" x="191" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(thirdColor)}>{thirdValue}</text>
           </g>
         ) : (
           null
@@ -71,9 +69,9 @@ export default function Resistor({ firstColor, secondColor, thirdColor, multipli
       
       <g id="group-4" className="Band-four">
       <rect x="266.236" y="17" width="20" height="70" fill={multiplierColor}/>
-      <rect x="266.236" y="87" width="20" height="65" stroke={strokeColor.multiplierColor}  fill={multiplierColor} fillRule="0.4"/>
-      <rect x="236.236" y="152" width="80" height="30" stroke={strokeColor.multiplierColor} fill={multiplierColor}/>
-      <text id="0" x="277" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.multiplierColor}>{multiplierValue}</text>
+      <rect x="266.236" y="87" width="20" height="65" stroke={strokeColor(multiplierColor)}  fill={multiplierColor} fillRule="0.4"/>
+      <rect x="236.236" y="152" width="80" height="30" stroke={strokeColor(multiplierColor)} fill={multiplierColor}/>
+      <text id="0" x="277" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(multiplierColor)}>{multiplierValue}</text>
       </g>
 
       { selectedOption === "4" || selectedOption === "5" ?
@@ -82,14 +80,14 @@ export default function Resistor({ firstColor, secondColor, thirdColor, multipli
           <rect x="437.152" y="2" width="20" height="100" fill={toleranceColor}/>
           <rect x="437.152" y="102" width="20" height="50" fill={toleranceColor} fillRule="0.4"/>
           <rect x="407.152" y="152" width="80" height="30" fill={toleranceColor}/>
-          <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.toleranceColor}>{toleranceValue}</text>
+          <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(toleranceColor)}>{toleranceValue}</text>
         </g>
         ) : (
           <g id="group-5" className="Band-six">
             <rect x="437.152" y="2" width="20" height="100" fill={ppmColor}/>
             <rect x="437.152" y="102" width="20" height="50" fill={ppmColor} fillRule="0.4"/>
             <rect x="407.152" y="152" width="80" height="30" fill={ppmColor}/>
-            <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.ppmColor}>{ppmValue}</text>
+            <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(ppmColor)}>{ppmValue}</text>
           </g>
         )
       }
@@ -99,23 +97,23 @@ export default function Resistor({ firstColor, secondColor, thirdColor, multipli
           <svg>
             <g id="group-3" className="Band-three">
               <rect x="181.423" y="17" width="20" height="70" fill={thirdColor}/>
-              <rect x="181.423" y="87" width="20" height="65" stroke={strokeColor.thirdColor} fill={thirdColor} fillRule="0.4"/>
-              <rect x="176.423" y="152" width="30" height="30" stroke={strokeColor.thirdColor} fill={thirdColor}/>
-              <text id="0" x="191" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.thirdColor}>{thirdValue}</text>
+              <rect x="181.423" y="87" width="20" height="65" stroke={strokeColor(thirdColor)} fill={thirdColor} fillRule="0.4"/>
+              <rect x="176.423" y="152" width="30" height="30" stroke={strokeColor(thirdColor)} fill={thirdColor}/>
+              <text id="0" x="191" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(thirdColor)}>{thirdValue}</text>
             </g>
 
             <g id="group-5" className="Band-five">
               <rect x="351.694" y="17" width="20" height="70" fill={toleranceColor}/>
               <rect x="351.694" y="87" width="20" height="65" fill={toleranceColor} fillRule="0.4"/>
               <rect x="321.694" y="152" width="80" height="30" fill={toleranceColor}/>
-              <text id="0" x="362" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.toleranceColor}>{toleranceValue}</text>
+              <text id="0" x="362" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(toleranceColor)}>{toleranceValue}</text>
             </g>
 
             <g id="group-6" className="Band-six">
               <rect x="437.152" y="2" width="20" height="100" fill={ppmColor}/>
               <rect x="437.152" y="102" width="20" height="50" fill={ppmColor} fillRule="0.4"/>
               <rect x="407.152" y="152" width="80" height="30" fill={ppmColor}/>
-              <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor.multiplierColor}>{ppmValue}</text>
+              <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(multiplierColor)}>{ppmValue}</text>
             </g>
           </svg>
         ) : (
