@@ -1,20 +1,22 @@
 import React from "react";
 import '../App.sass';
 
-export default function Resistor({ firstColor, secondColor, thirdColor, multiplierColor, toleranceColor, ppmColor, firstValue, secondValue, thirdValue, multiplierValue, toleranceValue, ppmValue, selectedOption }) {
-  firstColor = firstColor === null ? "#A1A1A1" : firstColor
-  secondColor = secondColor === null ? "#A1A1A1" : secondColor
-  thirdColor = thirdColor === null ? "#A1A1A1" : thirdColor
-  multiplierColor = multiplierColor === null ? "#A1A1A1" : multiplierColor
-  toleranceColor = toleranceColor === null ? "#A1A1A1" : toleranceColor
-  ppmColor = ppmColor === null ? "#A1A1A1" : ppmColor
+export default function Resistor({ resistor, selectedOption, numFormat }) {
+  // Band Color
+  const firstColor = resistor.firstBandOption === undefined ? "#A1A1A1" : resistor.firstBandOption.color
+  const secondColor = resistor.secondBandOption === undefined ? "#A1A1A1" : resistor.secondBandOption.color
+  const thirdColor = resistor.thirdBandOption === undefined ? "#A1A1A1" : resistor.thirdBandOption.color
+  const multiplierColor = resistor.multiplierOption === undefined ? "#A1A1A1" : resistor.multiplierOption.color
+  const toleranceColor = resistor.toleranceOption === undefined ? "#A1A1A1" : resistor.toleranceOption.color
+  const ppmColor = resistor.ppmOption === undefined ? "#A1A1A1" : resistor.ppmOption.color
 
-  firstValue = firstValue === null ? `-` : firstValue
-  secondValue = secondValue === null ? `-` : secondValue
-  thirdValue = thirdValue === null ? `-` : thirdValue
-  multiplierValue = multiplierValue === null ? `-` : `x${multiplierValue}Ω`
-  toleranceValue = toleranceValue === null ? `-` : `±${toleranceValue}%`
-  ppmValue = ppmValue === null ? `-` : `${ppmValue}ppm`
+  // Band Value
+  const firstValue = resistor.firstBandOption === undefined ? `-` : resistor.firstBandOption.value
+  const secondValue = resistor.secondBandOption === undefined ? `-` : resistor.secondBandOption.value
+  const thirdValue = resistor.thirdBandOption === undefined ? `-` : resistor.thirdBandOption.value
+  const multiplierValue = resistor.multiplierOption === undefined ? `-` : `x${numFormat(resistor.multiplierOption.value)}Ω`
+  const toleranceValue = resistor.toleranceOption === undefined ? `-` : `±${resistor.toleranceOption.value}%`
+  const ppmValue = resistor.ppmOption === undefined ? `-` : `${resistor.ppmOption.value}ppm`
 
   // Change text color based on background color
   const textColor = (hexcolor) => {
@@ -113,7 +115,7 @@ export default function Resistor({ firstColor, secondColor, thirdColor, multipli
               <rect x="437.152" y="2" width="20" height="100" fill={ppmColor}/>
               <rect x="437.152" y="102" width="20" height="50" fill={ppmColor} fillRule="0.4"/>
               <rect x="407.152" y="152" width="80" height="30" fill={ppmColor}/>
-              <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(multiplierColor)}>{ppmValue}</text>
+              <text id="0" x="448" y="167" width="60" height="30" dominantBaseline="central" textAnchor="middle" fill={textColor(ppmColor)}>{ppmValue}</text>
             </g>
           </svg>
         ) : (

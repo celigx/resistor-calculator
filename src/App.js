@@ -6,14 +6,15 @@ import Resistor from './components/Resistor';
 
 
 export default function FourBand() {
-  const [firstBandOption, setFirstBandOption] = useState(null);
-  const [secondBandOption, setSecondBandOption] = useState(null);
-  const [thirdBandOption, setThirdBandOption] = useState(null);
-  const [multiplierOption, setMultiplierOption] = useState(null);
-  const [toleranceOption, setToleranceOption] = useState(null);
-  const [ppmOption, setPpmOption] = useState(null);
+  const [resistor, setResistor] = useState({
+    firstBandOption: undefined,
+    secondBandOption: undefined,
+    thirdBandOption: undefined,
+    multiplierOption: undefined,
+    toleranceOption: undefined,
+    ppmOption: undefined,
+  })
   const [output, setOutput] = useState(null);
-  // eslint-disable-next-line
   const [array, setArray] = useState([false, false, false, false]);
   const [selectedOption, setSelectedOption] = useState("4")
   const isTrue = (currentValue) => currentValue === true;
@@ -24,40 +25,40 @@ export default function FourBand() {
     }
   })
 
-  const handleFirstBand = firstBandOption => {
-    setFirstBandOption(firstBandOption);
+  const handleFirstBand = option => {
+    setResistor(prevState => ({...prevState, firstBandOption: option}));
     array[0] = true;
-    console.log('firstBand:', firstBandOption.value);
+    console.log('firstBand:', option.value);
   }
 
-  const handleSecondBand = secondBandOption => {
-    setSecondBandOption(secondBandOption);
+  const handleSecondBand = option => {
+    setResistor(prevState => ({...prevState, secondBandOption: option}));
     array[1] = true;
-    console.log('secondBand:', secondBandOption.value);
-  };
+    console.log('secondBand:', option.value);
+  }
 
-  const handleThirdBand = thirdBandOption => {
-    setThirdBandOption(thirdBandOption);
+  const handleThirdBand = option => {
+    setResistor(prevState => ({...prevState, thirdBandOption: option}));
     array[4] = true;
-    console.log('thirdBand:', thirdBandOption.value);
+    console.log('thirdBand:', option.value);
   }
 
-  const handleMultiplier = multiplierOption => {
-    setMultiplierOption(multiplierOption);
+  const handleMultiplier = option => {
+    setResistor(prevState => ({...prevState, multiplierOption: option}));
     array[2] = true;
-    console.log('multiplier', multiplierOption.value)
+    console.log('multiplier', option.value)
   }
 
-  const handleTolerance = toleranceOption => {
-    setToleranceOption(toleranceOption);
+  const handleTolerance = option => {
+    setResistor(prevState => ({...prevState, toleranceOption: option}));
     array[3] = true;
-    console.log('tolerance', toleranceOption.value)
+    console.log('tolerance', option.value)
   }
 
-  const handlePPM = ppmOption => {
-    setPpmOption(ppmOption);
+  const handlePPM = option => {
+    setResistor(prevState => ({...prevState, ppmOption: option}));
     array[5] = true;
-    console.log('ppm', ppmOption.value)
+    console.log('ppm', option.value)
   }
 
   const numFormat = (num) => {
@@ -69,35 +70,35 @@ export default function FourBand() {
 
   const handleCalculate = () => {
     if (selectedOption === "4") {
-      const firstBand = firstBandOption.value;
-      const secondBand = secondBandOption.value;
+      const firstBand = resistor.firstBandOption.value;
+      const secondBand = resistor.secondBandOption.value;
       const concatBand = firstBand.concat(secondBand);
-      const multiplier = multiplierOption.value;
-      const tolerance = toleranceOption.value;
+      const multiplier = resistor.multiplierOption.value;
+      const tolerance = resistor.toleranceOption.value;
       const resistance = numFormat(concatBand * multiplier);
       
       setOutput(`${resistance} Ohms ${tolerance}%`);
       console.log('calculate', `Resistor: ${resistance} Ohms ${tolerance}%`)
     } else if (selectedOption === "5") {
-      const firstBand = firstBandOption.value;
-      const secondBand = secondBandOption.value;
-      const thirdBand = thirdBandOption.value;
+      const firstBand = resistor.firstBandOption.value;
+      const secondBand = resistor.secondBandOption.value;
+      const thirdBand = resistor.thirdBandOption.value;
       const concatBand = firstBand.concat(secondBand, thirdBand);
-      const multiplier = multiplierOption.value;
-      const tolerance = toleranceOption.value;
+      const multiplier = resistor.multiplierOption.value;
+      const tolerance = resistor.toleranceOption.value;
       const resistance = numFormat(concatBand * multiplier);
 
       setOutput(`${resistance} Ohms ${tolerance}%`);
       console.log('calculate', `Resistor: ${resistance} Ohms ${tolerance}%`)
     } else if (selectedOption === "6") {
-      const firstBand = firstBandOption.value;
-      const secondBand = secondBandOption.value;
-      const thirdBand = thirdBandOption.value;
+      const firstBand = resistor.firstBandOption.value;
+      const secondBand = resistor.secondBandOption.value;
+      const thirdBand = resistor.thirdBandOption.value;
       const concatBand = firstBand.concat(secondBand, thirdBand);
-      const multiplier = multiplierOption.value;
-      const tolerance = toleranceOption.value;
+      const multiplier = resistor.multiplierOption.value;
+      const tolerance = resistor.toleranceOption.value;
       const resistance = numFormat(concatBand * multiplier);
-      const ppm = ppmOption.value;
+      const ppm = resistor.ppmOption.value;
 
       setOutput(`${resistance} Ohms ${tolerance}% ${ppm}ppm`);
       console.log('calculate', `Resistor: ${resistance} Ohms ${tolerance}% ${ppm}ppm`)
@@ -116,15 +117,15 @@ export default function FourBand() {
       }
     } else if (e.target.value === '5') {
       if (array.length === 4) {
-        setArray(prevState => prevState, array.push(thirdBandOption === null ? false : true))            
+        setArray(prevState => prevState, array.push(resistor.thirdBandOption === undefined ? false : true))            
       } else if (array.length === 6) {
         setArray(prevState => prevState, array.pop())
       }
     } else if (e.target.value === '6') {
       if (array.length === 4) {
-        setArray(prevState => prevState, array.push(thirdBandOption === null ? false : true, ppmOption === null ? false : true))
+        setArray(prevState => prevState, array.push(resistor.thirdBandOption === undefined ? false : true, resistor.ppmOption === undefined ? false : true))
       } else if (array.length === 5) {
-        setArray(prevState => prevState, array.push(ppmOption === null ? false : true))
+        setArray(prevState => prevState, array.push(resistor.ppmOption === undefined ? false : true))
       }
     }
   }
@@ -149,7 +150,7 @@ export default function FourBand() {
             <Select
               placeholder={"Select a color"}
               options={firstBand}
-              value={firstBandOption}
+              value={resistor.firstBandOption}
               onChange={handleFirstBand}
               maxMenuHeight={500}
               blurInputOnSelect={true}
@@ -159,7 +160,7 @@ export default function FourBand() {
             <Select
               placeholder={"Select a color"}
               options={secondBand}
-              value={secondBandOption}
+              value={resistor.secondBandOption}
               onChange={handleSecondBand}
               maxMenuHeight={500}
               blurInputOnSelect={true}
@@ -172,7 +173,7 @@ export default function FourBand() {
                 <Select
                   placeholder={"Select a color"}
                   options={thirdBand}
-                  value={thirdBandOption}
+                  value={resistor.thirdBandOption}
                   onChange={handleThirdBand}
                   maxMenuHeight={500}
                   blurInputOnSelect={true}
@@ -187,7 +188,7 @@ export default function FourBand() {
             <Select
               placeholder={"Select a color"}
               options={multiplier}
-              value={multiplierOption}
+              value={resistor.multiplierOption}
               onChange={handleMultiplier}
               maxMenuHeight={500}
               blurInputOnSelect={true}
@@ -197,7 +198,7 @@ export default function FourBand() {
             <Select
               placeholder={"Select a color"}
               options={tolerance}
-              value={toleranceOption}
+              value={resistor.toleranceOption}
               onChange={handleTolerance}
               maxMenuHeight={500}
               blurInputOnSelect={true}
@@ -210,7 +211,7 @@ export default function FourBand() {
                 <Select
                   placeholder={"Select a color"}
                   options={ppm}
-                  value={ppmOption}
+                  value={resistor.ppmOption}
                   onChange={handlePPM}
                   maxMenuHeight={500}
                   blurInputOnSelect={true}
@@ -225,19 +226,9 @@ export default function FourBand() {
           <div className="Resistor-output">
             <h4>Output</h4>
             <Resistor
-              firstColor={firstBandOption && firstBandOption.color}
-              secondColor={secondBandOption && secondBandOption.color}
-              thirdColor={thirdBandOption && thirdBandOption.color}
-              multiplierColor={multiplierOption && multiplierOption.color}
-              toleranceColor={toleranceOption && toleranceOption.color}
-              ppmColor={ppmOption && ppmOption.color}
-              firstValue={firstBandOption && firstBandOption.value}
-              secondValue={secondBandOption && secondBandOption.value}
-              thirdValue={thirdBandOption && thirdBandOption.value}
-              multiplierValue={multiplierOption && numFormat(multiplierOption.value)}
-              toleranceValue={toleranceOption && toleranceOption.value}
-              ppmValue={ppmOption && ppmOption.value}
+              resistor={resistor}
               selectedOption={selectedOption}
+              numFormat={numFormat}
             />
             <p className="Output-paragraph">
               {array.every(isTrue) ? `Resistor: ${output}` : `Resistor: --`}
