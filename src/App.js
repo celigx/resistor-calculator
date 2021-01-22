@@ -109,25 +109,28 @@ export default function FourBand() {
     setSelectedOption(e.target.value)
     console.log(e.target.value)
 
-    if (e.target.value === '4') {
-      if (array.length === 5) {
-        setArray(prevState => prevState, array.pop())
-      } else if (array.length === 6) {
-        setArray(prevState => prevState, array.splice(4, 2))
-      }
-    } else if (e.target.value === '5') {
-      if (array.length === 4) {
-        setArray(prevState => prevState, array.push(resistor.thirdBandOption === undefined ? false : true))            
-      } else if (array.length === 6) {
-        setArray(prevState => prevState, array.pop())
-      }
-    } else if (e.target.value === '6') {
-      if (array.length === 4) {
-        setArray(prevState => prevState, array.push(resistor.thirdBandOption === undefined ? false : true, resistor.ppmOption === undefined ? false : true))
-      } else if (array.length === 5) {
-        setArray(prevState => prevState, array.push(resistor.ppmOption === undefined ? false : true))
+    const handleArrayLength = () => {
+      if (e.target.value === '4') {
+        if (array.length === 5) {
+          setArray(prevState => prevState, array.pop())
+        } else if (array.length === 6) {
+          setArray(prevState => prevState, array.splice(4, 2))
+        }
+      } else if (e.target.value === '5') {
+        if (array.length === 4) {
+          setArray(prevState => prevState, array.push(resistor.thirdBandOption === undefined ? false : true))            
+        } else if (array.length === 6) {
+          setArray(prevState => prevState, array.pop())
+        }
+      } else if (e.target.value === '6') {
+        if (array.length === 4) {
+          setArray(prevState => prevState, array.push(resistor.thirdBandOption === undefined ? false : true, resistor.ppmOption === undefined ? false : true))
+        } else if (array.length === 5) {
+          setArray(prevState => prevState, array.push(resistor.ppmOption === undefined ? false : true))
+        }
       }
     }
+    handleArrayLength()
   }
 
   return (
