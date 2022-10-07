@@ -1,6 +1,7 @@
 {
   "name": "resistor-caluclator",
-  "version": "0.1.0",
+  "homepage": "https://celigx.github.io/resistor-calculator",
+  "version": "2.2.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
