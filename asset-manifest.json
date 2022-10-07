@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/resistor-calculator/static/css/main.95950e9d.css",
+    "main.js": "/resistor-calculator/static/js/main.a6801717.js",
+    "index.html": "/resistor-calculator/index.html",
+    "main.95950e9d.css.map": "/resistor-calculator/static/css/main.95950e9d.css.map",
+    "main.a6801717.js.map": "/resistor-calculator/static/js/main.a6801717.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.95950e9d.css",
+    "static/js/main.a6801717.js"
+  ]
+}
